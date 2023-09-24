@@ -10,7 +10,7 @@ typedef struct
     int num[30];
     int length;
 } Sqlist;
-
+// way 1
 void delete_value(Sqlist &L, int x)
 {
     int filled_pos = 0;
@@ -25,6 +25,19 @@ void delete_value(Sqlist &L, int x)
             L.num[filled_pos] = L.num[i];
             filled_pos++;
         }
+    }
+    L.length -= delete_cnt;
+}
+
+// way2
+void delete_value1(Sqlist &L, int x)
+{
+    int delete_cnt = 0;
+    for (int i = 0; i < L.length; i++) {
+        if (L.num[i] == x) {
+            delete_cnt++;
+        }
+        L.num[i - delete_cnt] = L.num[i];
     }
     L.length -= delete_cnt;
 }
@@ -49,7 +62,7 @@ int main()
     int pos = rand() % L.length;
     int x = L.num[pos];
     cout << "delete x is " << x << endl;
-    delete_value(L, x);
+    delete_value1(L, x);
 
     // show
     cout << "The array after process:" << endl;
