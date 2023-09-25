@@ -32,10 +32,12 @@ LinkList list_head_insert(LinkList &L)
 
 LinkList list_tail_insert(LinkList &L)
 {
-    LNode *s, *end = L;
+    LNode *s, *end;
     int x;
     L = (LinkList)malloc(sizeof(LNode));
     L->next = NULL;
+    end = L;
+
     while (cin >> x) {
         s = (LNode *)malloc(sizeof(LNode));
         s->num = x;
@@ -46,6 +48,7 @@ LinkList list_tail_insert(LinkList &L)
     end->next = NULL;
     return L;
 }
+
 
 LNode *findByOrder(LinkList &L, int x)
 {
@@ -110,4 +113,35 @@ bool delete_by_order(LinkList &L, int n) {
     free(q);
     
     return true;
+}
+
+
+// 你之前给出的代码部分，这里省略...
+
+// 输出链表内容
+void printList(LinkList L) {
+    LNode* p = L->next;
+    while (p) {
+        cout << p->num << " ";
+        p = p->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    LinkList L = NULL;
+
+    // 初始化头结点
+    L = (LinkList)malloc(sizeof(LNode));
+    L->next = NULL;
+
+    // 使用insert_after函数创建链表 12345
+    for (int i = 1; i <= 5; i++) {
+        insert_after(L, i-1, i);  // 在第i-1个节点后插入数值i
+    }
+
+    cout << "Created linked list: ";
+    printList(L);
+
+    return 0;
 }
